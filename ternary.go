@@ -111,3 +111,10 @@ func TernaryUint16Slice(condi bool, ifTrue []uint16, ifFalse []uint16) []uint16 
 	}
 	return ifFalse
 }
+
+func TernaryString(condi bool, ifTrue string, ifFalse string) string {
+	if condi {
+		return ifTrue
+	}
+	return ifFalse
+}
