@@ -7,7 +7,7 @@ import (
 	"github.com/58kg/logs"
 )
 
-func Do(ctx context.Context, task func()) <-chan struct{} {
+func Async(ctx context.Context, task func()) <-chan struct{} {
 	doChan := make(chan struct{})
 	go func() {
 		defer func() {
