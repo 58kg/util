@@ -1,3 +1,5 @@
+github.com/58kg/gpool v0.0.0-20210923161651-219552289c3c h1:+gMkBtk98KoKut/3RNw6gwrDNQ8N9mSHpYXAAqqpk1A=
+github.com/58kg/gpool v0.0.0-20210923161651-219552289c3c/go.mod h1:n4l9rKwgzU+6XqZbVwxZUbfYW7sLIxFRf3LkdssGDZg=
 github.com/58kg/logs v0.0.0-20210919144247-4afdcda4f960 h1:oNyDugFiERri7vhr/P9S9fTIb70/2XMBaWPSJfGGCnM=
 github.com/58kg/logs v0.0.0-20210919144247-4afdcda4f960/go.mod h1:LYvN8hT2SLOBxiSeWswUdS2lXaWkxaL7itY0+VP/Fd0=
 github.com/58kg/tostr v0.0.0-20210919133647-5bf142b94bc4 h1:i6rjydJ9D3BgG6QaqK2NyDkk+N/HWrBAsZh/OKVv3Lo=
