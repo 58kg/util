@@ -8,8 +8,6 @@ import (
 	"strings"
 	"time"
 
-	"github.com/58kg/logs"
-
 	"github.com/58kg/tostr"
 
 	"google.golang.org/protobuf/runtime/protoiface"
@@ -68,12 +66,6 @@ func toString(obj interface{}) string {
 			return &ret
 		}(),
 		ResultSizeWarnCallback: func(str string) (shouldContinue bool) {
-			logs.Error("error: generate string too lang, len(str):%d, type:%T, pkgPath:%v", len(str), obj, func() string {
-				if val := reflect.TypeOf(obj); val != nil && val.Kind() != reflect.Invalid {
-					return val.PkgPath()
-				}
-				return "nil"
-			}())
 			return false
 		},
 		DisableMapKeySort: true,
