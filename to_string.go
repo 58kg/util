@@ -30,31 +30,28 @@ func (s *stringer) String() string {
 
 func toString(obj interface{}) string {
 	str := tostr.StringByConf(obj, tostr.Config{
-		FilterStructField: []func(reflect.Value, int) bool{func(obj reflect.Value, fieldIdx int) bool {
-			field := obj.Type().Field(fieldIdx)
-			if field.Type.PkgPath() != "" && toStringMap[field.Type] == nil {
-				switch {
-				case strings.HasPrefix(field.Type.PkgPath(), "google.golang.org/protobuf"):
-					return true
-				default:
-					return true
+		FilterStructField: []func(reflect.Value, int) bool{
+			func(obj reflect.Value, fieldIdx int) bool {
+				field := obj.Type().Field(fieldIdx)
+				if field.Type.PkgPath() != "" && toStringMap[field.Type] == nil {
+					return strings.HasPrefix(field.Type.PkgPath(), "google.golang.org/protobuf")
 				}
-			}
 
-			if reflect.PtrTo(obj.Type()).Implements(reflect.TypeOf((*protoiface.MessageV1)(nil)).Elem()) {
-				if _, inMap := map[string]struct{}{
-					"state":                {},
-					"sizeCache":            {},
-					"unknownFields":        {},
-					"XXX_NoUnkeyedLiteral": {},
-					"XXX_unrecognized":     {},
-					"XXX_sizecache":        {},
-				}[field.Name]; inMap {
-					return true
+				if reflect.PtrTo(obj.Type()).Implements(reflect.TypeOf((*protoiface.MessageV1)(nil)).Elem()) {
+					if _, inMap := map[string]struct{}{
+						"state":                {},
+						"sizeCache":            {},
+						"unknownFields":        {},
+						"XXX_NoUnkeyedLiteral": {},
+						"XXX_unrecognized":     {},
+						"XXX_sizecache":        {},
+					}[field.Name]; inMap {
+						return true
+					}
 				}
-			}
-			return false
-		}},
+				return false
+			},
+		},
 		ToString: func(o reflect.Value) (objStr string) {
 			if f, inMap := toStringMap[o.Type()]; inMap {
 				return f(o)
