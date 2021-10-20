@@ -2,6 +2,7 @@ package util
 
 import (
 	"math/rand"
+	"regexp"
 	"time"
 )
 
@@ -15,4 +16,10 @@ func Retry(f func(sn int) (end bool), times int, maxSleepTime time.Duration) {
 		}
 		time.Sleep(time.Duration(random.Int63n(int64(maxSleepTime))))
 	}
+}
+
+var trimWhiteReg = regexp.MustCompile(`(^\s+)|(\s+$)`)
+
+func TrimWhite(s string) string {
+	return trimWhiteReg.ReplaceAllString(s, "")
 }
